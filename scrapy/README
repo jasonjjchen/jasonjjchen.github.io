@@ -1,0 +1,4 @@
+Scrapy Spider that crawls every drug listed on WebMD
+Extracts a csv of 63952 x 21 with an average run time of ~ 5-6 hours
+EDA complete
+Drug search app proof of concept complete
