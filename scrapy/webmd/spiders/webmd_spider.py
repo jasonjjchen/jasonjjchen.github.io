@@ -53,7 +53,7 @@ class WebmdSpider(Spider):
         print "scraping drug info and following link to details..."
 
         if re.search('Please select a condition below to view a list', response.body):
-            yield Request(response.urljoin(response.xpath('//*[@id="fdbSearchResults"]/ul/li[1]/a/@href').extract()[0]),\
+            yield Request(response.urljoin(response.xpath('//*[@id="fdbSearchResults"]/ul/li[1]/a//@href').extract()[0]),\
                           callback = self.parse_drug, meta = {'Condition': Condition},\
                           dont_filter= True)
 
@@ -69,7 +69,7 @@ class WebmdSpider(Spider):
 
                 aspx_index = response.xpath('//*[@id="vit_drugsContent"]/div/div/table[2]/tr/td[1]/a/@href').extract()[i].find('aspx') + 4
 
-                yield Request(response.urljoin(response.xpath('//*[@id="vit_drugsContent"]/div/div/table[2]/tr/td[1]/a/@href').extract()[i][:aspx_index]),\
+                yield Request(response.urljoin(response.xpath('//*[@id="vit_drugsContent"]/div/div/table[2]/tr/td[1]/a//@href').extract()[i][:aspx_index]),\
                               callback = self.parse_details, meta = {'Condition': Condition, 'Drug': Drug, 'Indication': Indication, 'Type': Type, 'Review': Review},\
                               dont_filter= True)
 
@@ -92,7 +92,7 @@ class WebmdSpider(Spider):
             Use = ' '.join(response.xpath('//*[@id="ContentPane28"]/div/div/div/div[3]/div[1]/div[1]/h3/preceding-sibling::p//text()').extract())
             HowtoUse = ' '.join(response.xpath('//*[@id="ContentPane28"]/div/div/div/div[3]/div[1]/div[1]/h3/following-sibling::p//text()').extract())
             Sides = ' '.join(response.xpath('//*[@id="ContentPane28"]/div/div/div/div[3]/div[2]/div/p[1]//text()').extract()).replace('\r\n', '')
-            Precautions = ' '.join(response.xpath('//*[@id="ContentPane28"]/div/div/div/div[3]/div[3]/div/p/text()').extract())
+            Precautions = ' '.join(response.xpath('//*[@id="ContentPane28"]/div/div/div/div[3]/div[3]/div/p//text()').extract())
             Interactions = ' '.join(response.xpath('//*[@id="ContentPane28"]/div/div/div/div[3]/div[4]/div[1]/p[2]//text()').extract())
             revurl = response.xpath('//*[@id="ContentPane28"]/div/div/div/div[2]/nav/ul/li[7]/a//@href').extract()[0]
 
