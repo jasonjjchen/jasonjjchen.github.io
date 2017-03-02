@@ -1,4 +1,4 @@
 # jasonjjchen.github.io
  Copyright @ Jason Chen 2017
 ## Description
-Welcome to my portfolio for data science and programming projects!
+A repository for projects completed at NYC Data Science Academy 12-week bootcamp
